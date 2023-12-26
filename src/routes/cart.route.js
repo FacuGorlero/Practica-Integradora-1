@@ -7,7 +7,7 @@ const carrito = new CartMongo;
 router.get('/:cid', async (req,res)=>{
     const id = req.params.cid
 
-    const resp = await carrito.getCarts(5)
+    const resp = await carrito.getCarts(id);
     if (typeof (resp) === "string") {
         res.status(400).json({
           status: "fail",

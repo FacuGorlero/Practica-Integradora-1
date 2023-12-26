@@ -79,12 +79,25 @@ io.on('nuevoproducto', async newProduct => {
 })
 
 io.on ('eliminarProducto', async code => {
-  await products.deleteProductbycode(code);
+  await products.deleteProductByCode(code);
   const listproduct = await products.getProducts()  
 
   io.emit ('productos', listproduct)
 
 })
-});
 
 // chat
+
+io.on('message', async (data) => {
+  const newMessage = await messages.addMessage(data);
+  io.emit('messageLogs', newMessage)
+})
+
+io.on('init', async () =>{
+  io.emit('messageLogs', newMessage)
+})
+
+
+
+});
+
